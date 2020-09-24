@@ -28,3 +28,65 @@ Ya sabiendo lo que es un contenedor y lo maravilloso que son, queda más claro p
 (pequeño apunte: no en todas funciona por debajo igual, pero a nivel de usuario esto no nos tiene que preocupar)
 
 Antes de ponernos al lio y ver que se puede hacer con Docker, hay algunos conceptos, algunos servicios que son necesarios mencionar:
+* Una imagen es un template, una fotografía, a partir de la cual se puede crear un contenedor. Puedes tener una imagen, y a partir de ella crear todos los contenedores que quieras, sabiendo que esos nuevos contenedores serán iguales a esta imagen. 
+* Existen repositorios especiales para estas imágenes, conocidos como hub. El oficial es https://hub.docker.com/. En estos repositorios pueden subirse las imágenes y compartirlas.
+
+## Usar docker
+
+Como ya se ha dicho, Docker puede ser instalado en cualquier plataforma. En la página oficial (https://docs.docker.com/get-docker/) podemos encontrar como instalarla para la nuestra. Existen aplicaciones de escritorio como la de Windows, pero eso es para peasants, es mejor preferible usar la consola de comandos. 
+
+A continuación se van a repasar las operaciones y comandos más habituales. Hay bastantes más, pero por lo general no es necesario conocerlas.
+
+### Listar las imágenes
+
+```
+docker image
+```
+
+### Crear y ejecutar un nuevo contenedor
+
+```
+docker run
+```
+
+### Listar contenedores
+
+```
+docker ps
+```
+
+### Start / Stop / Restart
+
+```
+docker start / stop / restart
+```
+
+### Ver logs
+
+```
+docker logs
+```
+
+### Ejecutar un comando
+
+```
+docker exec
+```
+
+### Las tripas del contenedor
+
+```
+docker history
+```
+```
+docker inspect
+```
+
+### Eliminar contenedores e imágenes
+
+```
+docker rm
+```
+```
+docker rmi
+```
