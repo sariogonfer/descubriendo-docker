@@ -16,7 +16,7 @@ Donde como vemos, todo lo que metemos dentro tiene un propósito.
 
 Estos contenedores son… Dios. Permiten ser llevados a cualquier máquina y ejecutar la aplicación que guardan sin tener que preocuparnos de las posibles dependencias que esta pueda necesitar. Además, son ligeros y herramientas como Docker permiten que las operaciones sobre ellos sean extremadamente fáciles de realizar.
 
-Es importante, aunque solo sea mencionarlo, que un contenedor no es una máquina virtual como las que se pueden crear con VirtualBox o VMWare. Se parecen mucho, y prácticamente, solventan los mismos problemas. Pero mientras que estas máquinas virtuales funcionan virtualizando un sistema operativo diferente al anfitrión, y sobre ese sistema ejecutan la aplicación; un contenedor se ejecuta directamente sobre el anfitrión. Es decir, el kernel que utiliza es el mismo. Es una de las razones de porque los contenedores son mas ligeros que las máquinas virtuales. NO LLEVAN EL SISTEMA OPERATIVO ENCIMA.
+Es importante, aunque solo sea mencionarlo, que un contenedor no es una máquina virtual como las que se pueden crear con VirtualBox o VMWare. Se parecen mucho, y prácticamente, solventan los mismos problemas. Pero mientras que estas máquinas virtuales funcionan virtualizando un sistema operativo diferente al anfitrión, y sobre ese sistema ejecutan la aplicación; un contenedor se ejecuta directamente sobre el anfitrión. Es decir, el kernel que utiliza es el mismo. Es una de las razones de porque los contenedores son mas ligeros que las máquinas virtuales. **NO LLEVAN EL SISTEMA OPERATIVO ENCIMA.**
 
 ![bar](/figures/docker_vs_vm.jpg)
 
@@ -79,7 +79,7 @@ docker logs (nombre o ID del contenedor)
 
 ### Ejecutar un comando
 
-Ejecuta un comando DENTRO del contenedor.
+Ejecuta un comando **DENTRO** del contenedor.
 
 ```
 docker exec [nombre o ID del contenedor] [cmd]
@@ -106,9 +106,51 @@ docker inspect [nombre o ID del contenedor]
 
 ### Eliminar contenedores e imágenes
 
+Para eliminar un contenedor que esté parado.
 ```
-docker rm
+docker rm [nombre o ID del contenedor]
+
+-f: Fuerza la eliminación, aunque este corriendo el contenedor en ese momento.
 ```
+
+El equivalente para imagenes.
+
 ```
-docker rmi
+docker rmi [nombre o ID de la imagen]
 ```
+
+## Crear una imagen
+
+Hemos visto que los contenedores se crean a partir de una imagen, pero... ¿cómo se crea esta imagen?. 
+
+Las imagenes se pueden crear a partir de un contenedor ya creado o a partir de un fichero *Dockerfile*. Estos ficheros dan la receta para concinar nuestra imagen, como un buen cocido casero. 
+
+Estos documentos estan formados por una serie de comandos que se ejecutan secuencialmente. A continuación se muestra un ejemplo de este fichero:
+
+```
+# El comando FROM indica la imagen para usar como imagen base.
+FROM python:3
+
+# El comando WORKDIR establece el directorio en los que se va a ejecutar los comandos ADD, RUN, ... Como un cd
+WORKDIR /
+
+# Los comandos ADD añade un fichero del sistema local al sistema de ficheros de la imagen.
+ADD my_script.py /
+COPY my_script_2.py /
+
+# El comando RUN ejecuta el comando indicado. Otro ejemplo sería pip install requirements.txt
+RUN pip install pystrich
+
+# El comando EXPOSE informa de que la imagen escucha por cierto puerto. SOLO ES INFORMATIVO, NO PUBLICA
+EXPOSE 80
+
+# El comando ENV configura una variable de entorno.
+ENV host 1.2.3.4
+
+# El comando que se ejecuta cada vez que se arranca el contenedor.
+ENTRYPOINT [ "python"]
+CMD [ "./my_script.py" ]
+```
+
+
+
