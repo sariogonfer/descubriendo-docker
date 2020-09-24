@@ -5,8 +5,8 @@ FROM python:3
 WORKDIR /
 
 # Los comandos ADD añade un fichero del sistema local al sistema de ficheros de la imagen.
-ADD my_script.py /
-COPY my_script_2.py /
+ADD dc.py /
+COPY dc_2.py /
 
 # El comando RUN ejecuta el comando indicado. Otro ejemplo sería pip install requirements.txt
 RUN pip install pystrich
@@ -19,4 +19,4 @@ ENV host 1.2.3.4
 
 # El comando que se ejecuta cada vez que se arranca el contenedor.
 ENTRYPOINT [ "python"]
-CMD [ "./my_script.py" ]
+CMD [ "./dc.py" ]
