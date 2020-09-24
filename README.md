@@ -1,16 +1,24 @@
-
 # ¿Qué es Docker?
+
 Docker es una herramienta que permite la creación y ejecución de contenedores. Pero… ¿qué es un contenedor?
+
 ## Contenedores
+
 Es más importante hacerse una idea de lo que es un contenedor saber lo que es Docker. Un contenedor es un concepto bastante antiguo, que viene del mundo de Linux. Sin querer profundizar en como funciona, hay que pensar que un contenedor es una forma de encapsular una aplicación software junto con las librerías, dependencias, aplicaciones de terceros, … que necesita para funcionar. Se suele hacer un símil con los típicos contenedores de los barcos (de ahí el logo de Docker) ya que podríamos ver estos contenedores como cajas donde metemos todo lo que necesitamos:
 
+![contenedor](/figures/contenedor.png)
+
 Pero creo que podríamos darle una pequeña vuelta más a esta comparación y decir que son algo más como esto:
+
+![bar](/figures/bar.png)
 
 Donde como vemos, todo lo que metemos dentro tiene un propósito. 
 
 Estos contenedores son… Dios. Permiten ser llevados a cualquier máquina y ejecutar la aplicación que guardan sin tener que preocuparnos de las posibles dependencias que esta pueda necesitar. Además, son ligeros y herramientas como Docker permiten que las operaciones sobre ellos sean extremadamente fáciles de realizar.
 
 Es importante, aunque solo sea mencionarlo, que un contenedor no es una máquina virtual como las que se pueden crear con VirtualBox o VMWare. Se parecen mucho, y prácticamente, solventan los mismos problemas. Pero mientras que estas máquinas virtuales funcionan virtualizando un sistema operativo diferente al anfitrión, y sobre ese sistema ejecutan la aplicación; un contenedor se ejecuta directamente sobre el anfitrión. Es decir, el kernel que utiliza es el mismo. Es una de las razones de porque los contenedores son mas ligeros que las máquinas virtuales. NO LLEVAN EL SISTEMA OPERATIVO ENCIMA.
+
+![bar](/figures/docker_vs_vm.jpg)
 
 Y con esto, tenemos la idea básica de lo que es un contenedor. No necesitamos saber más, eso se lo dejamos a los informáticos. 
 
