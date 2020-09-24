@@ -79,6 +79,8 @@ docker logs (nombre o ID del contenedor)
 
 ### Ejecutar un comando
 
+Ejecuta un comando DENTRO del contenedor.
+
 ```
 docker exec [nombre o ID del contenedor] [cmd]
 
@@ -87,10 +89,16 @@ docker exec [nombre o ID del contenedor] [cmd]
 -w: Directorio donde se quiere ejecutar el comando.
 ```
 
-### Las tripas del contenedor
+Este comando se puede aprovechar para acceder al propio docker si se ejecuta bash o sh.
 
 ```
-docker history [nombre o ID del contenedor]
+docker exec -it [nombre o ID del contenedor] bash
+```
+
+### Las tripas de la imagen y el contenedor
+
+```
+docker history [nombre o ID de la imagen]
 ```
 ```
 docker inspect [nombre o ID del contenedor]
