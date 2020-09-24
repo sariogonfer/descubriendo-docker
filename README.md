@@ -42,44 +42,58 @@ A continuación se van a repasar las operaciones y comandos más habituales. Hay
 ```
 docker image
 ```
-
-### Crear y ejecutar un nuevo contenedor
-
-```
-docker run
-```
-
 ### Listar contenedores
 
 ```
-docker ps
+docker ps (opciones)
+
+-a: Muestra también los contenedores que están parados.
+```
+
+### Crear y ejecutar un nuevo contenedor
+
+Busca la imagen en local. Si no la encuentra, busca en el repositorio oficial (o cualquiera que tengamos configurado). Cuando lo encuentra, lo descarga y crea un contenedor con a partir de la imagen.
+
+```
+docker run (opciones) [nombre de la imagen]
+
+-t: Permite usar la terminal de dentro del contenedor.
+-i: Activa la entrada estandar (STDIN).
+-d: Ejecuta el contenedor en segundo plano.
+--name: Permite especificar el nombre del contenedor.
+-p: Permite mapear puertos del sistema anfitrión al contenedor.
+-v: Crea y une un volumen al contenedor.
 ```
 
 ### Start / Stop / Restart
 
 ```
-docker start / stop / restart
+docker start / stop / restart [nombre o ID del contenedor]
 ```
 
 ### Ver logs
 
 ```
-docker logs
+docker logs (nombre o ID del contenedor)
 ```
 
 ### Ejecutar un comando
 
 ```
-docker exec
+docker exec [nombre o ID del contenedor] [cmd]
+
+-t: Permite usar la terminal de dentro del contenedor.
+-i: Activa la entrada estandar (STDIN).
+-w: Directorio donde se quiere ejecutar el comando.
 ```
 
 ### Las tripas del contenedor
 
 ```
-docker history
+docker history [nombre o ID del contenedor]
 ```
 ```
-docker inspect
+docker inspect [nombre o ID del contenedor]
 ```
 
 ### Eliminar contenedores e imágenes
