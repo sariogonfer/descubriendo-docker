@@ -19,4 +19,4 @@ ENV host 1.2.3.4
 
 # El comando que se ejecuta cada vez que se arranca el contenedor.
 ENTRYPOINT [ "python"]
-CMD [ "./dc.py" ]
+CMD [ "./dc_1.py" ]
