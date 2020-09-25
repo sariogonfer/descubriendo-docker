@@ -35,7 +35,7 @@ Antes de ponernos al lio y ver que se puede hacer con Docker, hay algunos concep
 
 Como ya se ha dicho, Docker puede ser instalado en cualquier plataforma. En la página oficial (https://docs.docker.com/get-docker/) podemos encontrar como instalarla para la nuestra. Existen aplicaciones de escritorio como la de Windows, pero eso es para peasants, es mejor preferible usar la consola de comandos. 
 
-A continuación se van a repasar las operaciones y comandos más habituales. Hay bastantes más, pero por lo general no es necesario conocerlas.
+A continuación, se van a repasar las operaciones y comandos más habituales. Hay bastantes más, pero por lo general no es necesario conocerlas.
 
 ### Listar las imágenes
 
@@ -232,7 +232,7 @@ volumes:
   elasticsearch_data:
 ```
 
-Una vez tenemos listo el fichero *docker-compose.yml*, podemos levantar los servicios. A continuación se explican algunos de los comandos mas utilizados. Muchos de ellos son análogos a los que se utilizan con Docker. Recordad, que los contenedores creados de este modo siguen siendo contenedores, así que **TODO** lo que se puede hacer con la herramienta docker, también se puede aplicar a estos. Estos comandos deben ser ejecutados dentro de la carpeta que contiene el fichero, de esta forma, docker-compose solo 'verá' los contenedores pertenecientes a este.
+Una vez tenemos listo el fichero *docker-compose.yml*, podemos levantar los servicios. A continuación se explican algunos de los comandos más utilizados. Muchos de ellos son análogos a los que se utilizan con Docker. Recordad, que los contenedores creados de este modo siguen siendo contenedores, así que **TODO** lo que se puede hacer con la herramienta docker, también se puede aplicar a estos. Estos comandos deben ser ejecutados dentro de la carpeta que contiene el fichero, de esta forma, docker-compose solo 'verá' los contenedores pertenecientes a este.
 
 ### Puesta en marcha
 
@@ -290,6 +290,6 @@ Si es necesario, crea una nueva imagen, un nuevo contenedor, ... **IT'S FREE**. 
 
 Mejor tirar a lo fácil. Antes de crear una imagen, busca en internet. Seguro que un@ más list@ y más loc@ ya lo ha hecho antes.
 
-Si estás haciendo una función sencilla de Python, una análisis chorra en un Jupyter, ... piensa si necesitas usar contenedore. Los entornos de Python/anaconda están ahí para eso.
+Si estás haciendo una función sencilla de Python, un análisis sencillo en Jupyter, ... piensa si necesitas usar contenedore. Los entornos de Python/anaconda están ahí para eso.
 
 
