@@ -177,3 +177,119 @@ Con el nombre nuevo, ya podremos subir la imagen con el comando *push*.
 ```
 docker push [nombre o ID de la imagen]
 ``` 
+
+
+# docker-compose
+
+Compose es una herramienta para definir aplicaciones que utilicen múltiples contenedores. Al igual que ocurre con Docker, Compose está disponible para múltiples plataformas (https://docs.docker.com/compose/install/).
+
+Compose se basa en un fichero de configuración, al que se le suele dar el nombre de *docker-compose.yml*. En este fichero se escribe la configuración de nuestros contenedores, no son comandos como ocurría en el caso del *Dockerfile*. A continuación un ejemplo de este fichero en el que se crean tres contenedores, a saber: uno ejecuta ES, otro Kibana y el tercero un contenedor dummy con python. Como se ve, es un fichero con formato *YAML*, por lo que la estructura queda marcada por identaciones, y los miembros de las listas por guiones (-).
+
+```
+# La primera línea indica la version de la configuración. 
+version: '3'
+
+# Los servicios que se van a levantar, los contenedores.
+services:
+  # El primero es el ES. Se define el nombre y después su configuración. 
+  # Cumple una función parecida a la opción --name de docker run.
+  elastic:
+    # Imagen a partir de la cual se crea el contenedor. 
+	# En este caso, la url de esta imagen. 
+	# Es análogo al parámetro que indica la imagen al usar docker run.
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    # Define las variables de entorno dentro del contenedor.
+	# Es análogo a la opción -e del comando docker run.
+    environment: 
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    # Define los volumenes.
+	# Es análogo a la opción -v del comando docker run.
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+	# Define el mapping de los puertos. 
+	# Es análogo a la opción -p del comando docker run.
+    ports:
+      - 9299:9200
+      - 9399:9300
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.3.1
+    environment:
+      SERVER_NAME: localhost
+      ELASTICSEARCH_HOSTS: http://elastic:9200/
+    ports:
+      - 8008:5601
+  python:
+	# Se puede usar un Dockerfile en vez de una imagen.
+	# En este caso se indicaría el fichero a usar y Compose se encarga del resto.
+    build: .
+	# También se puede pasar el comando como se haría en docker run.
+    command:
+      ['tail', '-f', '/dev/null'] 
+
+# Se definen los volumenes que se van a usar.
+volumes:
+  elasticsearch_data:
+```
+
+Una vez tenemos listo el fichero *docker-compose.yml*, podemos levantar los servicios. A continuación se explican algunos de los comandos mas utilizados. Muchos de ellos son análogos a los que se utilizan con Docker. Recordad, que los contenedores creados de este modo siguen siendo contenedores, así que **TODO** lo que se puede hacer con la herramienta docker, también se puede aplicar a estos. Estos comandos deben ser ejecutados dentro de la carpeta que contiene el fichero, de esta forma, docker-compose solo 'verá' los contenedores pertenecientes a este.
+
+### Puesta en marcha
+
+Crea y arranca los contenedores. Si es necesario, construye la imagen.
+
+```
+docker-compose up (opciones) 
+
+-d: Ejecuta el contenedor en segundo plano.
+```
+
+### Listar contenedores
+
+Solo los que hayan sido creados usando el fichero compose.
+
+```
+docker-compose ps
+```
+
+### Start / Stop / Restart
+
+El nombre del servicio es el indicado en el fichero compose.
+
+```
+docker-compose start / stop / restart [nombre del servicio]
+```
+
+### Ejecutar un comando
+
+Ejecuta un comando **DENTRO** del contenedor.
+
+```
+docker-compose exec [nombre servicio] [cmd]
+
+-t: Permite usar la terminal de dentro del contenedor.
+-i: Activa la entrada estandar (STDIN).
+-w: Directorio donde se quiere ejecutar el comando.
+```
+
+### Eliminar los contenedores
+
+```
+docker-compose rm
+```
+
+# ¿Cómo y cuándo usar todo esto?
+
+Siempre... Pero con cabeza.
+
+Cuando se necesite levantar algún servicio tipo una base de datos, un nginx, ... evitas tener que instalarlo en tu máquina. Además, permite que la versión de este servicio sea la que necesitas.
+
+A la hora de desarrollar, sobretodo si hay más gente trabajando en el mismo proyecto. 
+
+Si es necesario, crea una nueva imagen, un nuevo contenedor, ... **IT'S FREE**. Mejor empezar de cero que intentar chapucear y parchear.
+
+Mejor tirar a lo fácil. Antes de crear una imagen, busca en internet. Seguro que un@ más list@ y más loc@ ya lo ha hecho antes.
+
+Si estás haciendo una función sencilla de Python, una análisis chorra en un Jupyter, ... piensa si necesitas usar contenedore. Los entornos de Python/anaconda están ahí para eso.
+
+
