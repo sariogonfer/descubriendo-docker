@@ -152,5 +152,28 @@ ENTRYPOINT [ "python"]
 CMD [ "./my_script.py" ]
 ```
 
+Una vez se tiene el fichero preparado, se puede crear la imagen con el siguiente comando:
 
+```
+docker build [dockerfile]
 
+-t: El tag de la imagen, el nombre
+```
+
+Una vez creada, ya la podemos usar como cualquier otra imagen, o incluso subirla al repositorio. Si este repositorio es el hub oficial, será necesario autenticarnos anteriormente usando siguiente comando:
+
+```
+docker login
+```
+
+IMPORTANTE: Si se quiere subir la imagen al hub oficial, el nombre de la imagen debe terner el formato (usuario)/(tag). Por ejemplo, si el nombre de nuestra imagen es *test*.
+
+```
+docker test username/test
+```
+
+Con el nombre nuevo, ya podremos subir la imagen con el comando *push*.
+
+```
+docker push [nombre o ID de la imagen]
+``` 
