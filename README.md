@@ -63,6 +63,7 @@ docker run (opciones) [nombre de la imagen]
 --name: Permite especificar el nombre del contenedor.
 -p: Permite mapear puertos del sistema anfitrión al contenedor.
 -v: Crea y une un volumen al contenedor.
+--rm: Elimina el contenedor (borra) cuando se detiene. Como hacer un stop y luego un rm.
 ```
 
 ### Start / Stop / Restart
@@ -292,4 +293,8 @@ Mejor tirar a lo fácil. Antes de crear una imagen, busca en internet. Seguro qu
 
 Si estás haciendo una función sencilla de Python, un análisis sencillo en Jupyter, ... piensa si necesitas usar contenedore. Los entornos de Python/anaconda están ahí para eso.
 
+# Extra
+
+* Docker para desplegar shiny: https://hub.docker.com/r/rocker/shiny (Importante el punto: *Connecting app and log directories to host*).
+* Docker Python: https://hub.docker.com/_/python
 
